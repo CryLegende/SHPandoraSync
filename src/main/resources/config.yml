@@ -1,0 +1,26 @@
+# SHPandoraSync
+#
+# Partage le délai de la Boîte de Pandore (EasyPandoraBox, /epb play) entre les serveurs Opale reliés par SHNetwork :
+# un joueur qui l'a ouverte sur un serveur ne peut pas l'ouvrir de nouveau sur l'autre avant la fin de son délai.
+#   - le délai est copié dans la base à chaque ouverture (surveillance toutes les `surveillance-ticks` ticks)
+#     et au départ du joueur, avant son arrivée sur l'autre serveur (barrière de passage de SHNetwork) ;
+#   - à l'arrivée du joueur, le délai de la base est repris s'il est plus récent que celui du serveur ;
+#   - EasyPandoraBox n'est pas modifié : il est lu par ses méthodes publiques (getConditionManager().getCooldowns()).
+# Les récompenses en attente d'EasyPandoraBox (waitingRewards.json) restent locales : elles ne servent qu'après un arrêt brutal.
+#
+# Ce plugin n'a ni commande ni permission. Il se pose sur tous les serveurs Opale du réseau, avec SHNetwork.
+# Table : epb_cooldown (uuid, player_name, last_play) dans la base indiquée ci-dessous (voir sql/schema.sql).
+
+base-de-donnees:
+  # Base partagée par tous les serveurs.
+  url: "jdbc:mariadb://127.0.0.1:3306/bo_net"
+  utilisateur: CHANGE_ME
+  mot-de-passe: CHANGE_ME
+  # Délai maximal de connexion et de réponse de la base, en millisecondes.
+  delai-ms: 3000
+
+# Intervalle, en ticks, entre deux relevés du délai des joueurs connectés (20 = une seconde).
+surveillance-ticks: 20
+
+# Temps maximal, en secondes, pendant lequel un joueur qui arrive attend que le serveur de départ ait écrit son délai.
+attente-passage-secondes: 10
