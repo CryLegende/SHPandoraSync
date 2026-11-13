@@ -42,7 +42,7 @@ Chaque ligne de `cooldowns.json` (pseudo, heure en millisecondes) devient une li
 
 ## Configuration
 
-Fichier par défaut repris du serveur (secrets remplacés par `CHANGE_ME`) : <a href="src/main/resources/config.yml">config.yml</a>.
+Fichier par défaut, avec des valeurs d'exemple : <a href="src/main/resources/config.yml">config.yml</a>.
 
 ## Compilation
 
