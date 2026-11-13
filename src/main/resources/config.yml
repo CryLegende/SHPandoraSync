@@ -13,7 +13,7 @@
 
 base-de-donnees:
   # Base partagée par tous les serveurs.
-  url: "jdbc:mariadb://127.0.0.1:3306/bo_net"
+  url: "jdbc:mariadb://127.0.0.1:3306/minecraft"
   utilisateur: CHANGE_ME
   mot-de-passe: CHANGE_ME
   # Délai maximal de connexion et de réponse de la base, en millisecondes.
